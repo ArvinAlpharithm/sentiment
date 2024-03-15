@@ -56,9 +56,7 @@ def analyze_sentiment(text):
         positive_percentage = round((len(positive_sentences) / total_sentences) * 100, 2)
         negative_percentage = round((len(negative_sentences) / total_sentences) * 100, 2)
 
-    return positive_sentences[:2], negative_sentences[:2], positive_percentage, negative_percentage
-
-
+    return positive_percentage, negative_percentage
 
 def main():
     # Download the necessary corpus data for TextBlob
@@ -84,18 +82,10 @@ def main():
         # Submit Button
         if st.button("Submit") and user_input != "":
             # Analyze sentiment
-            positive_sentences, negative_sentences, positive_percentage, negative_percentage = analyze_sentiment(user_input)
+            positive_percentage, negative_percentage = analyze_sentiment(user_input)
             st.subheader("Sentiment Analysis")
             st.write(f"Positive Percentage: {positive_percentage}%")
             st.write(f"Negative Percentage: {negative_percentage}%")
-            st.subheader("Top Positive Sentences")
-            for sentence in positive_sentences:
-                st.write(f":thumbsup: {sentence}")
-            st.subheader("Top Negative Sentences")
-            for sentence in negative_sentences:
-                st.write(f":thumbsdown: {sentence}")
-            # Generate summary
-          
         else:
             st.error("Please enter some text.")
     elif option == "URL":
@@ -106,16 +96,10 @@ def main():
             text = extract_text_from_url(url_input)
             
             # Analyze sentiment
-            positive_sentences, negative_sentences, positive_percentage, negative_percentage = analyze_sentiment(text)
+            positive_percentage, negative_percentage = analyze_sentiment(text)
             st.subheader("Sentiment Analysis")
             st.write(f"Positive Percentage: {positive_percentage}%")
             st.write(f"Negative Percentage: {negative_percentage}%")
-            st.subheader("Top Positive Sentences")
-            for sentence in positive_sentences:
-                st.write(f":thumbsup: {sentence}")
-            st.subheader("Top Negative Sentences")
-            for sentence in negative_sentences:
-                st.write(f":thumbsdown: {sentence}")
            
         else:
             st.error("Please enter a URL.")
@@ -129,20 +113,13 @@ def main():
             text = extract_text_from_pdf(uploaded_file)
             
             # Analyze sentiment
-            positive_sentences, negative_sentences, positive_percentage, negative_percentage = analyze_sentiment(text)
+            positive_percentage, negative_percentage = analyze_sentiment(text)
             st.subheader("Sentiment Analysis")
             st.write(f"Positive Percentage: {positive_percentage}%")
             st.write(f"Negative Percentage: {negative_percentage}%")
-            st.subheader("Top Positive Sentences")
-            for sentence in positive_sentences:
-                st.write(f":thumbsup: {sentence}")
-            st.subheader("Top Negative Sentences")
-            for sentence in negative_sentences:
-                st.write(f":thumbsdown: {sentence}")
            
         else:
             st.error("Please upload a PDF file.")
-
 
 if __name__ == "__main__":
     main()
