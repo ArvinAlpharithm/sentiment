@@ -3,7 +3,6 @@ import requests
 import streamlit as st
 from textblob import TextBlob
 from PyPDF2 import PdfReader
-from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 import nltk
 import ssl
@@ -16,10 +15,8 @@ except AttributeError:
 else:
     ssl._create_default_https_context = _create_unverified_https_context
 
-
-load_dotenv()
-
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Hardcoded OpenAI API key
+openai.api_key = "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"
 
 def extract_text_from_pdf(pdf_file):
     reader = PdfReader(pdf_file)
@@ -61,7 +58,6 @@ def analyze_sentiment(text):
 def main():
     # Download the necessary corpus data for TextBlob
     try:
-        import nltk
         nltk.download('punkt')
         nltk.download('averaged_perceptron_tagger')
         nltk.download('brown')
@@ -73,7 +69,7 @@ def main():
     # Header
    
     # Check if the user wants to write a text, upload a PDF file, or enter a URL
-    option = st.radio("Select Input Type", ("URL", "Text", "PDF",))
+    option = st.radio("Select Input Type", ("URL", "Text", "PDF"))
 
     # Create area for the user to write the text
     if option == "Text":
