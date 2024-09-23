@@ -82,8 +82,6 @@ def main():
     except Exception as e:
         st.error(f"Failed to download necessary data for TextBlob: {e}")
 
-    # Header
-    st.title("Sentiment Analysis App")
 
     # Check if the user wants to write a text, upload a PDF file, or enter a URL
     option = st.radio("Select Input Type", ("URL", "Text", "PDF"))
