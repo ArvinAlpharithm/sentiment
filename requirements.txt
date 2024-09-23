@@ -1,8 +1,9 @@
 streamlit
-langchain==0.0.316
-openai==0.28.1
-tiktoken
-PyPDF2
-python-dotenv 
+requests
 textblob
-bs4
+PyPDF2
+beautifulsoup4
+nltk
+llama-index
+python-dotenv
+llama-index-llms-groq
